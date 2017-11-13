@@ -74,7 +74,7 @@
             }).then((data) => {
               if (data.loginstatus === 'success') {
                 sessionStorage.setItem('username', this.user.username)
-                this.$router.push('/route/menu/home')
+                this.$router.push('/menu/home')
               }
             })
           } else {

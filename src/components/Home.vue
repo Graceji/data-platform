@@ -119,7 +119,7 @@
 </template>
 
 <script>
-  // import echarts from 'echarts'
+  import echarts from 'echarts'
   export default {
     name: 'Home',
     data () {
@@ -143,9 +143,9 @@
     methods: {
       changeItem (label) {
         if (label === '数据源监控') {
-          // this.pieChart = echarts.init(this.$refs.pie)
-          // this.barChart = echarts.init(this.$refs.bar)
-          // this.lineChart = echarts.init(this.$refs.line)
+          this.pieChart = echarts.init(this.$refs.pie)
+          this.barChart = echarts.init(this.$refs.bar)
+          this.lineChart = echarts.init(this.$refs.line)
           let pieOption = {
             backgroundColor: '#fff',
             title: {
