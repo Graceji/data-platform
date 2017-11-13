@@ -90,6 +90,8 @@ export default {
   },
   methods: {
     selectItem (index) {
+      // 只能单选
+      this.feedbackItems.forEach(item => { item.isSelect = false })
       this.feedbackItems[index].isSelect = !this.feedbackItems[index].isSelect
     },
     openConfirm () {

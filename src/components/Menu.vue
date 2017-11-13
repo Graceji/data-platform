@@ -19,7 +19,7 @@
       </div>
     </div>
     <el-col :span="4" class="main-sidebar">
-      <el-menu :default-active="path" router class="el-menu menu-navbar" style="height: 100%">
+      <el-menu :default-active="this.$route.path" router class="el-menu menu-navbar" style="height: 100%">
         <el-menu-item index="/route/menu/home"><i class="fa fa-home mr10"></i>首&nbsp&nbsp页</el-menu-item>
         <el-menu-item index="/route/menu/dictionary"><i class="ti-book mr10"></i>数据字典</el-menu-item>
         <el-menu-item index="/route/menu/feedBack"><i class="ti-clipboard mr10"></i>反馈数据问题</el-menu-item>
