@@ -44,11 +44,82 @@
         </div>
       </div>
     </div>
+    <div class="home-content" style="height: 100%" v-if="homeType === '数据覆盖'">
+      <el-row>
+        <el-col class="mid-content" :span="6">
+          <div class="name-content">数据纬度</div>
+          <div class="number-content">12</div>
+        </el-col>
+        <el-col class="mid-content" :span="10">
+          <div class="name-content">更新频率</div>
+          <div class="name-content">
+            <el-row>
+              <el-col style="text-align: center;" :span="6">
+                  <div class="number-content" style="color:#ff603c;">
+                    1<span class="unit-content">实时</span>
+                    <span class="border-line">|</span>
+                  </div>
+              </el-col>
+              <el-col style="text-align: center;" :span="6">
+                  <div class="number-content" style="color:#ff603c;">
+                    3<span class="unit-content">实时</span>
+                    <span class="border-line">|</span>
+                  </div>
+              </el-col>
+              <el-col style="text-align: center;" :span="6">
+                  <div class="number-content" style="color:#ff603c;">
+                    4<span class="unit-content">月度</span>
+                    <span class="border-line">|</span>
+                  </div>
+              </el-col>
+              <el-col style="text-align: center;" :span="6">
+                  <div class="number-content"style="color:#ff603c;" >
+                    1<span class="unit-content">定期</span>
+                  </div>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col class="mid-content" :span="6">
+          <div class="name-content">数据量级</div>
+          <div class="number-content" style="color:#92e900;">
+            12<span class="unit-content" style="margin-left: 8px;">亿</span>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col class="bom-content" :span="4">
+          <div class="grid-content bg-purple">3</div>
+        </el-col>
+        <el-col class="bom-content" :span="18">
+          <div>
+            <el-row class="bom-row">  
+              <el-col class="bom-col" :span="7">
+                <div class="name-content">企业量级</div>
+                <div class="number-content">
+                  12<span>万</span>
+                </div>
+              </el-col>
+              <el-col class="bom-col" :span="7">
+                <div class="name-content">数据完备度</div>
+                <div class="number-content">98%</div>
+              </el-col>
+              <el-col class="bom-col" :span="7">
+                <div class="name-content">覆盖法院</div>
+                <div class="number-content">231</div>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="home-content" style="height: 100%" v-if="homeType === '数据库监控'">
+    </div>
   </div>
 </template>
 
 <script>
-  import echarts from 'echarts'
+  // import echarts from 'echarts'
   export default {
     name: 'Home',
     data () {
@@ -72,9 +143,9 @@
     methods: {
       changeItem (label) {
         if (label === '数据源监控') {
-          this.pieChart = echarts.init(this.$refs.pie)
-          this.barChart = echarts.init(this.$refs.bar)
-          this.lineChart = echarts.init(this.$refs.line)
+          // this.pieChart = echarts.init(this.$refs.pie)
+          // this.barChart = echarts.init(this.$refs.bar)
+          // this.lineChart = echarts.init(this.$refs.line)
           let pieOption = {
             backgroundColor: '#fff',
             title: {
@@ -354,7 +425,7 @@
   #home {
     height: 100%;
     .home-nav {
-      height: 5%;
+      // height: 5%;
       text-align: left;
       margin: 20px;
       .el-radio-group {
@@ -374,6 +445,69 @@
         border-color:#ff9700;
         box-shadow:0 1px 4px 0 rgba(221,221,221,0.50);
       }
+    }
+    .home-content {
+      margin: 20px;
+      width: 100%;
+      .mid-content {
+        height: 110px;
+        background:#ffffff;
+        margin-right: 30px;
+        box-shadow:0 1px 4px 0 rgba(221,221,221,0.50);
+        .name-content {
+          font-family: PingFangSC-Regular;
+          font-size:16px;
+          color:#666666;
+          padding-left: 28px;
+          padding-top: 9px;
+          text-align: left;
+        }
+        .number-content {
+          font-family: PingFangSC-Medium;
+          font-size:42px;
+          color:#00e6ff;
+          .unit-content {
+            font-family:PingFangSC-Medium;
+            font-size:22px;
+            color:#666666;
+            margin-left: 16px;
+          }
+          .border-line {
+            margin-left: 16px;
+            font-family:PingFangSC-Light;
+            font-size:22px;
+            color:#dcdcdc;
+            letter-spacing:0;
+          }
+        }
+        
+      }
+      .bom-content {
+        height: 762px;
+        background:#ffffff;
+        margin-top: 30px;
+        margin-right: 30px;
+        .bom-row {
+          width: 90%;
+          height: 110px;
+          margin-top: 40px;
+          margin-left: 20px;
+          .bom-col {
+            background:#ccc;
+            background-image: url('/static/assets/1.png');
+            margin-right: 30px;
+            .name-content {
+              padding-top: 12px;
+              padding-left: 24px;
+            }
+          }
+        }
+      }
+      // .grid-content {
+      //   height: 110px;
+      //   background:#ffffff;
+      //   box-shadow:0 1px 4px 0 rgba(221,221,221,0.50);
+      // }
     }
     .source {
       height: 95%;
