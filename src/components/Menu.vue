@@ -68,8 +68,8 @@
     -moz-osx-font-smoothing: grayscale;
   }
   #menu, body, html {
-    height: 100%;
-    overflow: hidden;
+    // height: 100%;
+    // overflow: hidden;
     background-color: #f8f8f8;
   }
   html, body {
