@@ -74,7 +74,12 @@
             }).then((data) => {
               if (data.loginstatus === 'success') {
                 sessionStorage.setItem('username', this.user.username)
-                this.$router.push('/menu/home')
+                if (this.$route.query.redirect) {
+                  let redirect = this.$route.query.redirect
+                  this.$router.push(redirect)
+                } else {
+                  this.$router.push('/menu/home')
+                }
               }
             })
           } else {

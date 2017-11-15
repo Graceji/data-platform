@@ -7,11 +7,12 @@ import Dictionary from '../components/dictionary/Dictionary.vue'
 import Table from '../components/dictionary/dic_Tables.vue'
 import Visual from '../components/Visual.vue'
 import DataFeedBack from '../components/feedback/FeedBack.vue'
+import store from '../store'
 // import Visual from '../components/Visual1.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: '/route',
   routes: [
@@ -24,6 +25,9 @@ export default new Router({
       path: '/menu',
       name: 'menu',
       component: Menu,
+      meta: {
+        auth: true
+      },
       children: [
         {
           path: 'home',
@@ -55,7 +59,24 @@ export default new Router({
     {
       path: '/visual',
       name: 'visual',
-      component: Visual
+      component: Visual,
+      meta: {
+        auth: true
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(m => m.meta.auth)) {
+    if (store.state.user && store.state.user.user && store.state.user.user.username) {
+      next()
+    } else {
+      next({ path: '/login', query: { redirect: to.fullPath } })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

@@ -2,7 +2,8 @@ import qs from 'qs'
 import axios from 'axios'
 
 const request = {}
-const HOST = 'http://10.25.85.231:8092'
+// const HOST = 'http://10.25.85.231:8092'
+const HOST = 'http://10.180.219.0:8080'
 function handle (req) {
   return req.catch((err) => {
     const data = err.response && err.response.data
