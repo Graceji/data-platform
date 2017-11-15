@@ -7,7 +7,7 @@ import Dictionary from '../components/dictionary/Dictionary.vue'
 import Table from '../components/dictionary/dic_Tables.vue'
 import Visual from '../components/Visual.vue'
 import DataFeedBack from '../components/feedback/FeedBack.vue'
-import store from '../store'
+// import store from '../store'
 // import Visual from '../components/Visual1.vue'
 
 Vue.use(Router)
@@ -69,7 +69,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(m => m.meta.auth)) {
-    if (store.state.user && store.state.user.user && store.state.user.user.username) {
+    if (sessionStorage.getItem('username')) {
       next()
     } else {
       next({ path: '/login', query: { redirect: to.fullPath } })

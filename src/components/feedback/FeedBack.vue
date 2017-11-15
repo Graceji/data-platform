@@ -113,11 +113,13 @@ export default {
         cancelButtonClass: 'myCancel',
         confirmButtonClass: 'myConfirm',
         beforeClose: (action, instance, done) => {
+          console.log('this.user.user.userid', this.user)
           if (action === 'confirm') {
             instance.confirmButtonLoading = true
             instance.confirmButtonText = '提交中...'
             this.feedback({
-              username: this.user.user ? this.user.user.username : undefined,
+              userid: sessionStorage.getItem('userid'),
+              username: sessionStorage.getItem('username'),
               questiontype: this.questiontype,
               content: this.feedbackContent
             })
