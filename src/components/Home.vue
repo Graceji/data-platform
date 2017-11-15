@@ -110,7 +110,7 @@
         </el-col>
         <el-col class="bom-content" :span="18">
           <div>
-            <el-row class="bom-row">  
+            <el-row class="bom-top">
               <el-col class="bom-col qy-img" :span="7">
                 <div class="name-content">企业量级</div>
                 <div class="number-content">
@@ -129,6 +129,14 @@
               </el-col>
             </el-row>
           </div>
+          <el-row>
+            <el-col class="bom-left" :span="8">
+              <div>
+                <text class="data-title">数据模块</text>
+              </div>
+            </el-col>
+            <el-col :span="16"></el-col>
+          </el-row>
         </el-col>
       </el-row>
     </div>
@@ -209,115 +217,112 @@
                   shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
               }
-            }
-          ]
-        }
-        this.pieChart.setOption(pieOption)
-        this.barChart.setOption({
-          backgroundColor: '#fff',
-          title: {
-            text: '数据总量变化',
-            left: 'center',
-            top: 10,
-            textStyle: {
-              color: '#ccc'
-            }
-          },
-          calculable: true,
-          tooltip: { trigger: 'axis' },
-          legend: {
-            itemGap: 10,
-            data: []
-          },
-          xAxis: {
-            name: '时间/月',
-            type: 'category',
-            data: []
-          },
-          yAxis: {
-            name: '数据量',
-            type: 'value'
-          },
-          series: [
-            {
+            }]
+          }
+          this.pieChart.setOption(pieOption)
+          this.barChart.setOption({
+            backgroundColor: '#fff',
+            title: {
+              text: '数据总量变化',
+              left: 'center',
+              top: 10,
+              textStyle: {
+                color: '#ccc'
+              }
+            },
+            calculable: true,
+            tooltip: { trigger: 'axis' },
+            legend: {
+              itemGap: 10,
+              data: []
+            },
+            xAxis: {
+              name: '时间/月',
+              type: 'category',
+              data: []
+            },
+            yAxis: {
+              name: '数据量',
+              type: 'value'
+            },
+            series: [{
               name: 'all',
               type: 'bar',
               data: []
-            }
-          ]
-        })
-        this.lineChart.setOption({
-          backgroundColor: '#fff',
-          title: {
-            textStyle: {
-              color: '#ccc'
+            }]
+          })
+          this.lineChart.setOption({
+            backgroundColor: '#fff',
+            title: {
+              textStyle: {
+                color: '#ccc'
+              },
+              left: 'center',
+              top: 10,
+              text: '数据源月度增量'
             },
-            left: 'center',
-            top: 10,
-            text: '数据源月度增量'
-          },
-          tooltip: { trigger: 'axis' },
-          legend: {
-            bottom: 10,
-            data: ['fh', 'gil', 'icd', 'rdms', 'sci', 'smdb', 'ceic', 'creis']
-          },
-          xAxis: {
-            name: '时间/月',
-            data: []
-          },
-          yAxis: {
-            name: '数据量'
-          },
-          series: [
-            {
-              name: 'fh',
-              type: 'line',
+            tooltip: { trigger: 'axis' },
+            legend: {
+              bottom: 10,
+              data: ['fh', 'gil', 'icd', 'rdms', 'sci', 'smdb', 'ceic', 'creis']
+            },
+            xAxis: {
+              name: '时间/月',
               data: []
             },
-            {
-              name: 'gil',
-              type: 'line',
-              data: []
+            yAxis: {
+              name: '数据量'
             },
-            {
-              name: 'icd',
-              type: 'line',
-              data: []
-            },
-            {
-              name: 'rdms',
-              type: 'line',
-              data: []
-            },
-            {
-              name: 'sci',
-              type: 'line',
-              data: []
-            },
-            {
-              name: 'smdb',
-              type: 'line',
-              data: []
-            },
-            {
-              name: 'ceic',
-              type: 'line',
-              data: []
-            },
-            {
-              name: 'creis',
-              type: 'line',
-              data: []
-            }
-          ]
-        })
-        this.pieChange('2017')
-        this.barChange('2017')
-        this.lineChange('2017')
-      }
-    },
-    pieChange (value) {
-      this.$store
+            series: [
+              {
+                name: 'fh',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'gil',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'icd',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'rdms',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'sci',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'smdb',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'ceic',
+                type: 'line',
+                data: []
+              },
+              {
+                name: 'creis',
+                type: 'line',
+                data: []
+              }
+            ]
+          })
+          this.pieChange('2017')
+          this.barChange('2017')
+          this.lineChange('2017')
+        }
+      },
+      pieChange (value) {
+        this.$store
         .dispatch('home/getPieData', {
           value
         })
@@ -348,9 +353,9 @@
             ]
           })
         })
-    },
-    barChange (value) {
-      this.$store
+      },
+      barChange (value) {
+        this.$store
         .dispatch('home/getBarData', {
           value
         })
@@ -392,9 +397,9 @@
             ]
           })
         })
-    },
-    lineChange (value) {
-      this.$store
+      },
+      lineChange (value) {
+        this.$store
         .dispatch('home/getLineData', {
           value
         })
@@ -463,30 +468,30 @@
             ]
           })
         })
-    },
-    handleSelect (key, indexPath) {
-      this.isActive = false
-      console.log(key, indexPath)
-    },
-    handleClickUp (navigator) {
-      let len = navigator.length
-      for (let i = 0; i < len - 1; i++) {
-        navigator[i].label = navigator[i + 1].label
+      },
+      handleSelect (key, indexPath) {
+        this.isActive = false
+        console.log(key, indexPath)
+      },
+      handleClickUp (navigator) {
+        let len = navigator.length
+        for (let i = 0; i < len - 1; i++) {
+          navigator[i].label = navigator[i + 1].label
+        }
+        navigator[len - 1].label = navigator[0].label
+      },
+      handleClickDown (navigator) {
+        let len = navigator.length
+        for (let i = len - 1; i > 0; i--) {
+          navigator[i].label = navigator[i - 1].label
+        }
+        navigator[0].label = navigator[len - 1].label
       }
-      navigator[len - 1].label = navigator[0].label
     },
-    handleClickDown (navigator) {
-      let len = navigator.length
-      for (let i = len - 1; i > 0; i--) {
-        navigator[i].label = navigator[i - 1].label
-      }
-      navigator[0].label = navigator[len - 1].label
+    mounted () {
+      this.changeItem('数据源监控')
     }
-  },
-  mounted () {
-    this.changeItem('数据源监控')
   }
-}
 </script>
 
 <style lang="less">
@@ -557,7 +562,7 @@
       background: #ffffff;
       margin-top: 30px;
       margin-right: 30px;
-      .bom-row {
+      .bom-top {
         width: 90%;
         height: 110px;
         margin-top: 40px;
@@ -595,6 +600,15 @@
         }
         .fy-img {
           background-image: url("/static/assets/home_fy.png");
+        }
+      }
+      .bom-left {
+        .data-title {
+          font-family:PingFangSC-Regular;
+          font-size:28px;
+          color:#333333;
+          letter-spacing:0;
+          text-align:justify;
         }
       }
       .navigator {
