@@ -18,6 +18,7 @@
     <div class="feedback-item">
       <span class="title">2. 我们具体在什么地方表现的不足：</span>
       <span class="subtitle">（如果设计具体的表名，可在里面填写）</span>
+      <img :src="warning" alt="warning">
       <span>建议内容不能为空！</span>
     </div>
     <div class="feedback-content2">
@@ -32,7 +33,7 @@
       </el-input>
       <span class="input-size">{{ `${feedbackContent.length} / 300` }}</span>
     </div>
-    <div class="feedback-item">
+    <!-- <div class="feedback-item">
       <span class="title">3. 如需图片和其他文件来说明问题，请上传：</span>
       <span class="subtitle">（最多支持3份）</span>
     </div>
@@ -48,7 +49,7 @@
         :on-error="handleError">
         <i class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
-    </div>
+    </div> -->
     <div class="feedback-submit">
       <el-button type="warning" @click="openConfirm">提交</el-button>
     </div>
@@ -60,6 +61,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import warning from '../../assets/warning.png'
 export default {
   name: 'feedback',
   data () {
@@ -87,8 +89,9 @@ export default {
         }
       ],
       feedbackContent: '',
-      questiontype: 0,
-      fileList: []
+      questiontype: '',
+      fileList: [],
+      warning
     }
   },
   computed: mapState(['user']),
@@ -101,45 +104,58 @@ export default {
       this.questiontype = index
     },
     openConfirm () {
-      const h = this.$createElement
-      this.$msgbox({
-        title: '',
-        message: h('p', null, [
-          h('span', null, '您是否提交当前的反馈信息？')
-        ]),
-        showCancelButton: true,
-        confirmButtonText: '确认反馈',
-        cancelButtonText: '再考虑下',
-        cancelButtonClass: 'myCancel',
-        confirmButtonClass: 'myConfirm',
-        beforeClose: (action, instance, done) => {
-          console.log('this.user.user.userid', this.user)
-          if (action === 'confirm') {
-            instance.confirmButtonLoading = true
-            instance.confirmButtonText = '提交中...'
-            this.feedback({
-              userid: sessionStorage.getItem('userid'),
-              username: sessionStorage.getItem('username'),
-              questiontype: this.questiontype,
-              content: this.feedbackContent
-            })
-            // setTimeout(() => {
-            //   done()
-            //   setTimeout(() => {
-            //     instance.confirmButtonLoading = false
-            //   }, 300)
-            // }, 3000)
-          } else {
-            done()
-          }
-        }
-      })
-        .then(action => {
-          this.$message({
-            type: 'info',
-            message: 'action: ' + action
-          })
+      if (this.questiontype === '') {
+        this.$message({
+          message: '请选择您想反馈的方面',
+          type: 'warning'
         })
+      } else if (!this.feedbackContent.length) {
+        this.$message({
+          message: '请输入您想反馈的内容',
+          type: 'warning'
+        })
+      } else {
+        const h = this.$createElement
+        this.$msgbox({
+          title: '',
+          message: h('p', null, [
+            h('span', null, '您是否提交当前的反馈信息？')
+          ]),
+          showCancelButton: true,
+          confirmButtonText: '确认反馈',
+          cancelButtonText: '再考虑下',
+          cancelButtonClass: 'myCancel',
+          confirmButtonClass: 'myConfirm',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              instance.confirmButtonLoading = true
+              instance.confirmButtonText = '提交中...'
+              this.feedback({
+                userid: sessionStorage.getItem('userid'),
+                username: sessionStorage.getItem('username'),
+                questiontype: this.questiontype,
+                content: this.feedbackContent
+              })
+                .then(data => {
+                  done()
+                  setTimeout(() => {
+                    instance.confirmButtonLoading = false
+                  }, 300)
+                  if (data.state === 'success') {
+                  } else if (data.state === 'failed') {
+                    // this.$message({
+                    //   message: '反馈失败',
+                    //   type: 'warning'
+                    // })
+                    this.$message.error('反馈失败')
+                  }
+                })
+            } else {
+              done()
+            }
+          }
+        })
+      }
     },
     handleError (err, file, fileList) {
       console.log(err)
