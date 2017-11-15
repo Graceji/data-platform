@@ -138,17 +138,16 @@
 </template>
 
 <script>
-import echarts from 'echarts'
-export default {
-  name: 'Home',
-  data () {
-    return {
-      homeType: '数据源监控',
-      pieTimeValue: '2017年',
-      barTimeValue: '2017年',
-      lineTimeValue: '2017年',
-      options: [
-        {
+  import echarts from 'echarts'
+  export default {
+    name: 'Home',
+    data () {
+      return {
+        homeType: '数据源监控',
+        pieTimeValue: '2017年',
+        barTimeValue: '2017年',
+        lineTimeValue: '2017年',
+        options: [{
           value: '2017',
           label: '2017年'
         },
@@ -159,71 +158,30 @@ export default {
         {
           value: '2015',
           label: '2015年'
-        }
-      ],
-      isActive: true,
-      navigator: [
-        {
-          index: 1,
-          label: '法律'
-        },
-        {
-          index: 2,
-          label: '财务'
-        },
-        {
-          index: 3,
-          label: '舆情'
-        },
-        {
-          index: 4,
-          label: '宏观'
-        },
-        {
-          index: 5,
-          label: '行业'
-        },
-        {
-          index: 6,
-          label: '海关'
-        },
-        {
-          index: 7,
-          label: '房地产'
-        },
-        {
-          index: 8,
-          label: '招聘'
-        },
-        {
-          index: 9,
-          label: '法律'
-        }
-      ]
-    }
-  },
-  methods: {
-    changeItem (label) {
-      if (label === '数据源监控') {
-        this.pieChart = echarts.init(this.$refs.pie)
-        this.barChart = echarts.init(this.$refs.bar)
-        this.lineChart = echarts.init(this.$refs.line)
-        let pieOption = {
-          backgroundColor: '#fff',
-          title: {
-            text: '企业大数据来源',
-            left: 'center',
-            top: 10,
-            textStyle: {
-              color: '#ccc'
-            }
-          },
-          tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
-          },
-          series: [
-            {
+        }]
+      }
+    },
+    methods: {
+      changeItem (label) {
+        if (label === '数据源监控') {
+          this.pieChart = echarts.init(this.$refs.pie)
+          this.barChart = echarts.init(this.$refs.bar)
+          this.lineChart = echarts.init(this.$refs.line)
+          let pieOption = {
+            backgroundColor: '#fff',
+            title: {
+              text: '企业大数据来源',
+              left: 'center',
+              top: 10,
+              textStyle: {
+                color: '#ccc'
+              }
+            },
+            tooltip: {
+              trigger: 'item',
+              formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            series: [{
               type: 'pie',
               radius: '70%',
               center: ['50%', '60%'],

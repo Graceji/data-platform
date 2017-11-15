@@ -20,10 +20,10 @@
     </div>
     <el-col :span="4" class="main-sidebar">
       <el-menu :default-active="this.$route.path" router class="el-menu menu-navbar" style="height: 100%">
-        <el-menu-item index="/route/menu/home"><i class="fa fa-home mr10"></i>首&nbsp&nbsp页</el-menu-item>
-        <el-menu-item index="/route/menu/dictionary"><i class="ti-book mr10"></i>数据字典</el-menu-item>
-        <el-menu-item index="/route/menu/feedBack"><i class="ti-clipboard mr10"></i>反馈数据问题</el-menu-item>
-        <el-menu-item index="/route/menu/messages"><i class="ti-info-alt mr10"></i>数据量查看</el-menu-item>
+        <el-menu-item index="/menu/home"><i class="fa fa-home mr10"></i>首&nbsp&nbsp页</el-menu-item>
+        <el-menu-item index="/menu/dictionary"><i class="ti-book mr10"></i>数据字典</el-menu-item>
+        <el-menu-item index="/menu/feedBack"><i class="ti-clipboard mr10"></i>反馈数据问题</el-menu-item>
+        <el-menu-item index="/menu/messages"><i class="ti-info-alt mr10"></i>数据量查看</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="21" style="margin: 53px 172px;height: 90%">

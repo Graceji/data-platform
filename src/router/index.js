@@ -13,14 +13,15 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  base: '/route',
   routes: [
     {
-      path: '/route',
-      redirect: '/route/login',
+      path: '/',
+      redirect: '/login',
       component: Login
     },
     {
-      path: '/route/menu',
+      path: '/menu',
       name: 'menu',
       component: Menu,
       children: [
@@ -47,12 +48,12 @@ export default new Router({
       ]
     },
     {
-      path: '/route/login',
+      path: '/login',
       name: 'login',
       component: Login
     },
     {
-      path: '/route/visual',
+      path: '/visual',
       name: 'visual',
       component: Visual
     }

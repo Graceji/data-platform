@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import user from './user'
 import dictionary from './dictionary'
 import home from './home'
+import feedback from './feedback'
 
 function addPrefix (prefix, obj = {}) {
   const newObj = {}
@@ -24,11 +25,6 @@ function wrapModule (m) {
 }
 
 Vue.use(Vuex)
-console.log({
-  ...wrapModule(user),
-  ...wrapModule(dictionary),
-  ...wrapModule(home)
-})
 
 const store = new Vuex.Store({
   actions: {},
@@ -36,7 +32,8 @@ const store = new Vuex.Store({
   modules: {
     ...wrapModule(user),
     ...wrapModule(dictionary),
-    ...wrapModule(home)
+    ...wrapModule(home),
+    ...wrapModule(feedback)
   }
 })
 

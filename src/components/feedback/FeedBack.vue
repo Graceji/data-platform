@@ -27,9 +27,10 @@
         resize="none"
         placeholder="请将您的反馈和遇到的问题详细告诉我们，我们会认真对待并不断优化和改善"
         v-model="feedbackContent"
-        maxlength="300"
+        maxlength=300
         >
       </el-input>
+      <span class="input-size">{{ `${feedbackContent.length} / 300` }}</span>
     </div>
     <div class="feedback-item">
       <span class="title">3. 如需图片和其他文件来说明问题，请上传：</span>
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'feedback',
   data () {
@@ -85,14 +87,18 @@ export default {
         }
       ],
       feedbackContent: '',
+      questiontype: 0,
       fileList: []
     }
   },
+  computed: mapState(['user']),
   methods: {
+    ...mapActions({feedback: 'feedback/feedback'}),
     selectItem (index) {
       // 只能单选
       this.feedbackItems.forEach(item => { item.isSelect = false })
       this.feedbackItems[index].isSelect = !this.feedbackItems[index].isSelect
+      this.questiontype = index
     },
     openConfirm () {
       const h = this.$createElement
@@ -104,16 +110,23 @@ export default {
         showCancelButton: true,
         confirmButtonText: '确认反馈',
         cancelButtonText: '再考虑下',
+        cancelButtonClass: 'myCancel',
+        confirmButtonClass: 'myConfirm',
         beforeClose: (action, instance, done) => {
           if (action === 'confirm') {
             instance.confirmButtonLoading = true
-            instance.confirmButtonText = '执行中...'
-            setTimeout(() => {
-              done()
-              setTimeout(() => {
-                instance.confirmButtonLoading = false
-              }, 300)
-            }, 3000)
+            instance.confirmButtonText = '提交中...'
+            this.feedback({
+              username: this.user.user ? this.user.user.username : undefined,
+              questiontype: this.questiontype,
+              content: this.feedbackContent
+            })
+            // setTimeout(() => {
+            //   done()
+            //   setTimeout(() => {
+            //     instance.confirmButtonLoading = false
+            //   }, 300)
+            // }, 3000)
           } else {
             done()
           }
@@ -171,11 +184,17 @@ export default {
   .feedback-content2 {
     margin-bottom: 40px;
     width: 100%;
+    display: relative;
     .el-textarea__inner {
       height: 148px;
       &:focus {
         border-color: #ff9700;
       }
+    }
+    .input-size {
+      position: absolute;
+      right: 65px;
+      top: 382px;
     }
   }
   .feedback-content3 {
@@ -238,6 +257,44 @@ export default {
     font-size:14px;
     color:#999999;
     letter-spacing:0;
+  }
+}
+.el-message-box__message {
+  p {
+    text-align: center;
+    font-size:14px;
+    color:#666;
+  }
+}
+.myCancel {
+  border:1px solid #ff9700;
+  width:118px;
+  // height:32px;
+  font-size:14px;
+  color:#ff9700;
+  border-radius: 0;
+  &:hover {
+    border:1px solid #ff9700;
+    color:#ff9700;
+  }
+}
+.myConfirm, .is-loading {
+  background:#ff9700;
+  border:1px solid #ff9700;
+  width:118px;
+  // height:32px;
+  font-size:14px;
+  color:#fff;
+  border-radius: 0;
+  &:hover {
+    border:1px solid #ff9700;
+    color:#fff;
+    background:#ff9700;
+  }
+  &:focus {
+    border:1px solid #ff9700;
+    color:#fff;
+    background:#ff9700;
   }
 }
 </style>

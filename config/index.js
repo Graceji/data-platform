@@ -29,7 +29,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/showdb/**': {
-        target: 'http://10.180.223.191:8000', //表示你跨域请求的接口的域名
+        // target: 'http://10.180.223.191:8000', //表示你跨域请求的接口的域名
+        target: 'http://10.180.219.0:8080',
         secure: false, //如果是https接口，需要配置这个参数
         changeOrigin: true, //如果接口跨域，需要进行这个参数配置
       }
