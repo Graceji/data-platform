@@ -142,6 +142,7 @@ export default {
                     instance.confirmButtonLoading = false
                   }, 300)
                   if (data.state === 'success') {
+                    this.$router.push('/menu/feedBack/success')
                   } else if (data.state === 'failed') {
                     // this.$message({
                     //   message: '反馈失败',

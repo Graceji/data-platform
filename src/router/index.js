@@ -7,6 +7,7 @@ import Dictionary from '../components/dictionary/Dictionary.vue'
 import Table from '../components/dictionary/dic_Tables.vue'
 import Visual from '../components/Visual.vue'
 import DataFeedBack from '../components/feedback/FeedBack.vue'
+import FeedBackSuccess from '../components/feedback/FeedBackSuccess.vue'
 // import store from '../store'
 // import Visual from '../components/Visual1.vue'
 
@@ -48,6 +49,11 @@ const router = new Router({
           path: 'feedBack',
           name: 'dataFeedBack',
           component: DataFeedBack
+        },
+        {
+          path: 'feedBack/:status',
+          name: 'dataFeedBack',
+          component: FeedBackSuccess
         }
       ]
     },
