@@ -21,6 +21,13 @@ export default {
       const body = ''
       window.open(`mailto:${mail}?subject=${subject}&body=${body}`)
     }
+  },
+  created () {
+    if (this.$router.currentRoute.path === '/login') {
+      if (sessionStorage.getItem('username')) {
+        this.$router.push('/menu/home')
+      }
+    }
   }
 }
 </script>
