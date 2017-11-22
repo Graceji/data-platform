@@ -102,7 +102,7 @@
     mounted () {
       this.$store.dispatch('dictionary/getTables', {
         tableName: this.tableName,
-        usergroup: this.user.usergroup
+        usergroup: sessionStorage.getItem('usergroup')
       }).catch((e) => {
         this.$notify({
           title: e.status,
