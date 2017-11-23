@@ -10,7 +10,10 @@
         <i class="ti-user mr5"></i>
         <span class="heading-font">{{username}}</span>
         <i class="fa fa-sign-out ml20"></i>
-        <span class="heading-exit"><router-link to="/" tag="li">退出</router-link></span>
+        <!-- <span class="heading-exit">
+          <router-link to="/" tag="li">退出</router-link>
+        </span> -->
+        <el-button type="text" class="heading-exit" @click="signout">退出</el-button>
       </div>
       <div class="search">
         <i class="ti-search search-icon"></i>
@@ -52,6 +55,13 @@
         return path
       }
     },
+    methods: {
+      signout () {
+        sessionStorage.removeItem('username')
+        sessionStorage.removeItem('userid')
+        this.$router.push('/')
+      }
+    },
     mounted () {
     }
   }
@@ -68,8 +78,7 @@
   }
   #menu, body, html {
     height: 100%;
-    width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: #f8f8f8;
   }
   html, body {
@@ -125,11 +134,12 @@
       margin-right: 40px;
       line-height: 53px;
       .heading-exit {
-        cursor: pointer;
-        li {
-          list-style: none;
-          display: inline-block;
-        }
+        // cursor: pointer;
+        color:#666;
+        // li {
+        //   list-style: none;
+        //   display: inline-block;
+        // }
       }
     }
     .search {

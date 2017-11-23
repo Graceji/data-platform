@@ -40,51 +40,51 @@
         cardContents: [
           {
             info: '法律',
-            url: '/dictionary/fh',
+            url: '/menu/dictionary/fh',
             bg: '/static/assets/icon_3d/falv.png'
           }, {
             info: '舆情',
-            url: '/dictionary/yuqing',
+            url: '/menu/dictionary/yuqing',
             bg: '/static/assets/icon_3d/yuqing.png'
           }, {
             info: '财务',
-            url: '/dictionary/smdb',
+            url: '/menu/dictionary/smdb',
             bg: '/static/assets/icon_3d/caiwu.png'
           }, {
             info: '大宗商品',
-            url: '/dictionary/sci',
+            url: '/menu/dictionary/sci',
             bg: '/static/assets/icon_3d/dazongshangpin.png'
           }, {
             info: '海关',
-            url: '/dictionary/custom',
+            url: '/menu/dictionary/custom',
             bg: '/static/assets/icon_3d/haiguan.png'
           }, {
             info: '房地产',
-            url: '/dictionary/fang',
+            url: '/menu/dictionary/fang',
             bg: '/static/assets/icon_3d/fangdichan.png'
           }, {
             info: '工商',
-            url: '/dictionary/icd',
+            url: '/menu/dictionary/icd',
             bg: '/static/assets/icon_3d/gongshang.png'
           }, {
             info: '全球宏观',
-            url: '/dictionary/ceic',
+            url: '/menu/dictionary/ceic',
             bg: '/static/assets/icon_3d/quanqiuhongguan.png'
           }, {
             info: '行业',
-            url: '/dictionary/industry',
+            url: '/menu/dictionary/industry',
             bg: '/static/assets/icon_3d/hangye.png'
           }, {
             info: '二手房',
-            url: '/dictionary/fangsec',
+            url: '/menu/dictionary/fangsec',
             bg: '/static/assets/icon_3d/ershoufang.png'
           }, {
             info: '并购',
-            url: '/dictionary/cvsource',
+            url: '/menu/dictionary/cvsource',
             bg: '/static/assets/icon_3d/binggou.png'
           }, {
             info: '专利',
-            url: '/dictionary/patent',
+            url: '/menu/dictionary/patent',
             bg: '/static/assets/icon_3d/zhuanli.png'
           }
         ],
@@ -92,73 +92,73 @@
           {
             title: '法律',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/fh',
+            url: '/menu/dictionary/fh',
             src: '/static/assets/icon_3d/falv.png'
           },
           {
             title: '舆情',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/yuqing',
+            url: '/menu/dictionary/yuqing',
             src: '/static/assets/icon_3d/yuqing.png'
           },
           {
             title: '财务',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/smdb',
+            url: '/menu/dictionary/smdb',
             src: '/static/assets/icon_3d/caiwu.png'
           },
           {
             title: '大宗商品',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/sci',
+            url: '/menu/dictionary/sci',
             src: '/static/assets/icon_3d/dazongshangpin.png'
           },
           {
             title: '海关',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/custom',
+            url: '/menu/dictionary/custom',
             src: '/static/assets/icon_3d/haiguan.png'
           },
           {
             title: '房地产',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/fang',
+            url: '/menu/dictionary/fang',
             src: '/static/assets/icon_3d/fangdichan.png'
           },
           {
             title: '工商',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/icd',
+            url: '/menu/dictionary/icd',
             src: '/static/assets/icon_3d/gongshang.png'
           },
           {
             title: '全球宏观',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/ceic',
+            url: '/menu/dictionary/ceic',
             src: '/static/assets/icon_3d/quanqiuhongguan.png'
           },
           {
             title: '行业',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/industry',
+            url: '/menu/dictionary/industry',
             src: '/static/assets/icon_3d/hangye.png'
           },
           {
             title: '二手房',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/fangsec',
+            url: '/menu/dictionary/fangsec',
             src: '/static/assets/icon_3d/ershoufang.png'
           },
           {
             title: '并购',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/cvsource',
+            url: '/menu/dictionary/cvsource',
             src: '/static/assets/icon_3d/binggou.png'
           },
           {
             title: '专利',
             content: '舆情数据来源于爬虫，我们试试监控2000家公司，舆情数据来源于爬虫，我们试试监控2000家公司',
-            url: '/route/menu/dictionary/patent',
+            url: '/menu/dictionary/patent',
             src: '/static/assets/icon_3d/zhuanli.png'
           }
         ]

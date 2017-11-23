@@ -75,6 +75,7 @@
               if (data.loginstatus === 'success') {
                 sessionStorage.setItem('username', this.user.username)
                 sessionStorage.setItem('userid', this.user.userid)
+                sessionStorage.setItem('usergroup', this.user.usergroup)
                 if (this.$route.query.redirect) {
                   let redirect = this.$route.query.redirect
                   this.$router.push(redirect)

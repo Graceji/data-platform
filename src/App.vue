@@ -11,7 +11,6 @@ export default {
   name: 'app',
   data () {
     return {
-
     }
   },
   methods: {
@@ -20,6 +19,13 @@ export default {
       const subject = '[数据平台意见反馈]'
       const body = ''
       window.open(`mailto:${mail}?subject=${subject}&body=${body}`)
+    }
+  },
+  created () {
+    if (this.$router.currentRoute.path === '/login') {
+      if (sessionStorage.getItem('username')) {
+        this.$router.push('/menu/home')
+      }
     }
   }
 }
