@@ -50,7 +50,7 @@
           <div class="name-content">数据纬度</div>
           <div class="number-content">12</div>
         </el-col>
-        <el-col class="mid-content" :span="10">
+        <el-col class="mid-content widthbigger" :span="10">
           <div class="name-content">更新频率</div>
           <div class="name-content">
             <el-row>
@@ -88,7 +88,7 @@
         </el-col>
       </el-row>
       <el-row class="footer-content">
-        <el-col class="bom-content" :span="4">
+        <el-col class="footer-left" :span="5">
           <div class="navigator">
             <img @click="handleClickUp(navigator)" src="/static/assets/Rectangle up.png">
             <el-menu
@@ -109,7 +109,7 @@
             <img @click="handleClickDown(navigator)" src="/static/assets/Rectangle down.png">
           </div>
         </el-col>
-        <el-col class="bom-content" :span="19">
+        <el-col class="footer-right" :span="18">
           <transition name="fade" mode="out-in">
             <router-view class="view"></router-view>
           </transition>
@@ -497,10 +497,11 @@
       dataChange (value) {
         this.$store
         .dispatch('dataCover/getDataCover', {
-          value
+          sourcename: value
         })
         .then(data => {
           console.log(data, 'data')
+          console.log(this.dataCover, 'this.dataCover')
         })
       },
       handleClickUp (navigator) {
@@ -529,7 +530,7 @@
     },
     mounted () {
       this.changeItem('数据源监控')
-      this.dataChange('icd')
+      // this.dataChange('icd')
     }
   }
 </script>
@@ -539,6 +540,7 @@
   // height: 1902px;
   margin-top: 34px;
   margin-left: 30px;
+  margin-right: 30px;
   .home-nav {
     // height: 5%;
     text-align: left;
@@ -563,49 +565,58 @@
   .home-content {
     min-width: 1406px;
     margin-top: 20px;
+    margin-bottom: 20px;
     .header-content {
-      margin-right: 30px;
-    }
-    .mid-content {
-      height: 110px;
-      background: #ffffff;
-      margin-right: 30px;
-      box-shadow: 0 1px 4px 0 rgba(221, 221, 221, 0.5);
-      .name-content {
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #666666;
-        padding-left: 28px;
-        padding-top: 9px;
-        text-align: left;
-      }
-      .number-content {
-        font-family: PingFangSC-Medium;
-        font-size: 42px;
-        color: #00e6ff;
-        .unit-content {
-          font-family: PingFangSC-Medium;
-          font-size: 22px;
+      display: flex;
+      .mid-content {
+        height: 110px;
+        width: 264px;
+        flex: 1;
+        background: #ffffff;
+        box-shadow: 0 1px 4px 0 rgba(221, 221, 221, 0.5);
+        .name-content {
+          font-family: 'PingFangSC-Regular';
+          font-size: 16px;
           color: #666666;
-          margin-left: 16px;
+          padding-left: 28px;
+          padding-top: 9px;
+          text-align: left;
         }
-        .border-line {
-          margin-left: 16px;
-          font-family: PingFangSC-Light;
-          font-size: 22px;
-          color: #dcdcdc;
-          letter-spacing: 0;
+        .number-content {
+          font-family: 'PingFangSC-Medium';
+          font-size: 42px;
+          color: #00e6ff;
+          .unit-content {
+            font-family: 'PingFangSC-Medium';
+            font-size: 22px;
+            color: #666666;
+            margin-left: 16px;
+          }
+          .border-line {
+            margin-left: 16px;
+            font-family: 'PingFangSC-Light';
+            font-size: 22px;
+            color: #dcdcdc;
+            letter-spacing: 0;
+          }
         }
+      }
+      .widthbigger {
+        flex: 2;
+        margin-left: 30px;
+        margin-right: 30px;
       }
     }
     .footer-content {
-      min-width: 1690px;
       min-height: 762px;
-      .bom-content {
+      min-width: 1406px;
+      margin-top: 30px;
+      display: flex;
+      .footer-left {
+        flex: 1;
         min-height: 762px;
-        background: #ffffff;
-        margin-top: 30px;
         margin-right: 30px;
+        background-color: #fff;
         .navigator {
           min-width: 254px;
           margin: 30px 0;
@@ -633,6 +644,11 @@
             background: #ff9700;
           }
         }
+      }
+      .footer-right {
+        flex: 4;
+        min-height: 762px;
+        min-width: 1106px;
       }
     }
     // .grid-content {

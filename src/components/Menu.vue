@@ -101,6 +101,7 @@
     background:#ffffff;
     box-shadow:0 1px 4px 0 rgba(221,221,221,0.50);
     height:53px;
+    min-width: 736px;
     z-index: 1000;
     .navbar-header {
       float: left;
