@@ -56,25 +56,25 @@
             <el-row>
               <el-col style="text-align: center;" :span="6">
                   <div class="number-content" style="color:#ff603c;">
-                    1<span class="unit-content">实时</span>
+                    2<span class="unit-content">实时</span>
                     <span class="border-line">|</span>
                   </div>
               </el-col>
               <el-col style="text-align: center;" :span="6">
                   <div class="number-content" style="color:#ff603c;">
-                    3<span class="unit-content">实时</span>
+                    7<span class="unit-content">日度</span>
                     <span class="border-line">|</span>
                   </div>
               </el-col>
               <el-col style="text-align: center;" :span="6">
                   <div class="number-content" style="color:#ff603c;">
-                    4<span class="unit-content">月度</span>
+                    2<span class="unit-content">月度</span>
                     <span class="border-line">|</span>
                   </div>
               </el-col>
               <el-col style="text-align: center;" :span="6">
                   <div class="number-content"style="color:#ff603c;" >
-                    1<span class="unit-content">定期</span>
+                    1<span class="unit-content">季度</span>
                   </div>
               </el-col>
             </el-row>
@@ -87,56 +87,32 @@
           </div>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row class="footer-content">
         <el-col class="bom-content" :span="4">
           <div class="navigator">
             <img @click="handleClickUp(navigator)" src="/static/assets/Rectangle up.png">
             <el-menu
-              default-active="1"
-              class="navigator-content"
+              router
+              :default-active="this.$route.path"
+              v-bind:class="{'navigator-content': true}"
               @select="handleSelect"
               >
-              <el-menu-item 
+              <el-menu-item
                 v-for="item in navigator"
                 :key="item.index"
                 :index="item.index"
-                v-bind:class="{'item-navigator': true, 'is-active': (item.index===1)&&isActive}"
+                v-bind:class="{'item-navigator': true}"
                 >
-                  <span slot="title">{{item.label}}</span>
+                {{item.label}}
               </el-menu-item>
             </el-menu>
             <img @click="handleClickDown(navigator)" src="/static/assets/Rectangle down.png">
           </div>
         </el-col>
-        <el-col class="bom-content" :span="18">
-          <div>
-            <el-row class="bom-top">
-              <el-col class="bom-col qy-img" :span="7">
-                <div class="name-content">企业量级</div>
-                <div class="number-content">
-                  12<span class="unit-content">万</span>
-                </div>
-              </el-col>
-              <el-col class="bom-col data-img" :span="7">
-                <div class="name-content">数据完备度</div>
-                <div class="number-content">
-                  98<span class="unit-content">%</span>
-                </div>
-              </el-col>
-              <el-col class="bom-col fy-img" :span="7">
-                <div class="name-content">覆盖法院</div>
-                <div class="number-content">231</div>
-              </el-col>
-            </el-row>
-          </div>
-          <el-row>
-            <el-col class="bom-left" :span="8">
-              <div>
-                <text class="data-title">数据模块</text>
-              </div>
-            </el-col>
-            <el-col :span="16"></el-col>
-          </el-row>
+        <el-col class="bom-content" :span="19">
+          <transition name="fade" mode="out-in">
+            <router-view class="view"></router-view>
+          </transition>
         </el-col>
       </el-row>
     </div>
@@ -147,6 +123,8 @@
 
 <script>
   import echarts from 'echarts'
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'Home',
     data () {
@@ -166,8 +144,50 @@
         {
           value: '2015',
           label: '2015年'
+        }],
+        isActive: true,
+        navigator: [{
+          index: '/menu/home/law',
+          label: '法律'
+        },
+        {
+          index: '/menu/home/fiance',
+          label: '财务'
+        },
+        {
+          index: '/menu/home/sentiment',
+          label: '舆情'
+        },
+        {
+          index: '/menu/home/macrography',
+          label: '宏观'
+        },
+        {
+          index: '/menu/home/industry',
+          label: '行业'
+        },
+        {
+          index: '/menu/home/customs',
+          label: '海关'
+        },
+        {
+          index: '/menu/home/estate',
+          label: '房地产'
+        },
+        {
+          index: '/menu/home/recruit',
+          label: '招聘'
+        },
+        {
+          index: '/menu/home/commerce',
+          label: '工商'
         }]
       }
+    },
+    computed: {
+      ...mapGetters({
+        dataCover: 'dataCover/dataCover'
+      })
     },
     methods: {
       changeItem (label) {
@@ -470,26 +490,46 @@
         })
       },
       handleSelect (key, indexPath) {
-        this.isActive = false
-        console.log(key, indexPath)
+        // let ans = key.split('/')[3]
+        // let ans = 'icd'
+        this.dataChange('icd')
+      },
+      dataChange (value) {
+        this.$store
+        .dispatch('dataCover/getDataCover', {
+          value
+        })
+        .then(data => {
+          console.log(data, 'data')
+        })
       },
       handleClickUp (navigator) {
         let len = navigator.length
+        let indexAns = navigator[0].index
+        let labelAns = navigator[0].label
         for (let i = 0; i < len - 1; i++) {
+          navigator[i].index = navigator[i + 1].index
           navigator[i].label = navigator[i + 1].label
         }
-        navigator[len - 1].label = navigator[0].label
+        navigator[len - 1].index = indexAns
+        navigator[len - 1].label = labelAns
       },
       handleClickDown (navigator) {
+        this.isActive = false
         let len = navigator.length
+        let indexAns = navigator[len - 1].index
+        let labelAns = navigator[len - 1].label
         for (let i = len - 1; i > 0; i--) {
+          navigator[i].index = navigator[i - 1].index
           navigator[i].label = navigator[i - 1].label
         }
-        navigator[0].label = navigator[len - 1].label
+        navigator[0].index = indexAns
+        navigator[0].label = labelAns
       }
     },
     mounted () {
       this.changeItem('数据源监控')
+      this.dataChange('icd')
     }
   }
 </script>
@@ -497,10 +537,11 @@
 <style lang="less">
 #home {
   // height: 1902px;
+  margin-top: 34px;
+  margin-left: 30px;
   .home-nav {
     // height: 5%;
     text-align: left;
-    margin: 20px;
     .el-radio-group {
       width: 100%;
     }
@@ -520,8 +561,8 @@
     }
   }
   .home-content {
-    margin: 20px;
-    width: 1406px;
+    min-width: 1406px;
+    margin-top: 20px;
     .header-content {
       margin-right: 30px;
     }
@@ -557,84 +598,40 @@
         }
       }
     }
-    .bom-content {
-      height: 762px;
-      background: #ffffff;
-      margin-top: 30px;
-      margin-right: 30px;
-      .bom-top {
-        width: 90%;
-        height: 110px;
-        margin-top: 40px;
-        margin-left: 20px;
-        .bom-col {
-          background: #ccc;
-          margin-right: 30px;
-          height: 110px;
-          .name-content {
-            padding-top: 12px;
-            padding-left: 23px;
-            text-align: left;
-            font-family: PingFangSC-Regular;
-            font-size: 18px;
-            color: #ffffff;
-            letter-spacing: 0;
-          }
-          .number-content {
-            font-family: PingFangSC-Regular;
-            font-size: 48px;
-            color: #ffffff;
-            letter-spacing: 0;
-          }
-          .unit-content {
-            font-family: PingFangSC-Medium;
-            font-size: 22px;
-            margin-left: 2px;
-          }
-        }
-        .qy-img {
-          background-image: url("/static/assets/home_qy.png");
-        }
-        .data-img {
-          background-image: url("/static/assets/home_data.png");
-        }
-        .fy-img {
-          background-image: url("/static/assets/home_fy.png");
-        }
-      }
-      .bom-left {
-        .data-title {
-          font-family:PingFangSC-Regular;
-          font-size:28px;
-          color:#333333;
-          letter-spacing:0;
-          text-align:justify;
-        }
-      }
-      .navigator {
-        margin: 30px 0;
-        .navigator-content {
-          text-align: center;
-          background: #ffffff;
-          text-align: center;
-          :hover {
+    .footer-content {
+      min-width: 1690px;
+      min-height: 762px;
+      .bom-content {
+        min-height: 762px;
+        background: #ffffff;
+        margin-top: 30px;
+        margin-right: 30px;
+        .navigator {
+          min-width: 254px;
+          margin: 30px 0;
+          .navigator-content {
+            text-align: center;
             background: #ffffff;
+            text-align: center;
+            :hover {
+              background: #ffffff;
+            }
+            .item-navigator {
+              border:1px solid #ff9700;
+              border-radius:100px;
+              width:178px;
+              height:38px;
+              line-height: 38px;
+              margin: 32px auto;
+            }
           }
-          .item-navigator {
-            border:1px solid #ff9700;
-            border-radius:100px;
-            width:178px;
-            height:38px;
-            line-height: 38px;
-            margin: 32px auto;
-          }
-        }
-      .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active {
-        background: #ff9700;
-        color: #ffffff;
-        box-shadow: 0 8px 14px 0 #f9d8a8;
-        :hover {
+        .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active {
           background: #ff9700;
+          color: #ffffff;
+          box-shadow: 0 8px 14px 0 #f9d8a8;
+          :hover {
+            background: #ff9700;
+          }
         }
       }
     }
@@ -648,7 +645,7 @@
     height: 95%;
     position: relative;
     overflow: hidden;
-    padding: 0 20px 20px 20px;
+    // padding: 0 20px 20px 20px;
     .pie {
       height: 45%;
       position: relative;

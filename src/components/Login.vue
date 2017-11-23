@@ -79,7 +79,7 @@
                   let redirect = this.$route.query.redirect
                   this.$router.push(redirect)
                 } else {
-                  this.$router.push('/menu/home')
+                  this.$router.push('/menu/home/law')
                 }
               }
             })

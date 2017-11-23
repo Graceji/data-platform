@@ -4,6 +4,7 @@ import user from './user'
 import dictionary from './dictionary'
 import home from './home'
 import feedback from './feedback'
+import dataCover from './dataCover'
 
 function addPrefix (prefix, obj = {}) {
   const newObj = {}
@@ -33,7 +34,8 @@ const store = new Vuex.Store({
     ...wrapModule(user),
     ...wrapModule(dictionary),
     ...wrapModule(home),
-    ...wrapModule(feedback)
+    ...wrapModule(feedback),
+    ...wrapModule(dataCover)
   }
 })
 

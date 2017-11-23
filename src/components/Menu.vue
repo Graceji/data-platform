@@ -20,13 +20,13 @@
     </div>
     <el-col :span="4" class="main-sidebar">
       <el-menu :default-active="this.$route.path" router class="el-menu menu-navbar" style="height: 100%">
-        <el-menu-item index="/menu/home"><i class="fa fa-home mr10"></i>首&nbsp&nbsp页</el-menu-item>
+        <el-menu-item index="/menu/home/law"><i class="fa fa-home mr10"></i>首&nbsp&nbsp页</el-menu-item>
         <el-menu-item index="/menu/dictionary"><i class="ti-book mr10"></i>数据字典</el-menu-item>
         <el-menu-item index="/menu/feedBack"><i class="ti-clipboard mr10"></i>反馈数据问题</el-menu-item>
         <el-menu-item index="/menu/messages"><i class="ti-info-alt mr10"></i>数据量查看</el-menu-item>
       </el-menu>
     </el-col>
-    <el-col :span="21" style="margin: 53px 172px;height: 90%">
+    <el-col :span="20" style="padding-top: 53px; padding-left: 172px; height: 100%; width:100%; overflow: scroll;">
       <transition name="fade" mode="out-in">
         <router-view class="view"></router-view>
       </transition>
@@ -48,7 +48,6 @@
         tables: 'dictionary/tables'
       }),
       path () {
-        console.log(this.$route.path)
         let path = this.$route.path.replace(/(^\/\w+)\/(\w+)/, '$1')
         return path
       }
@@ -68,8 +67,9 @@
     -moz-osx-font-smoothing: grayscale;
   }
   #menu, body, html {
-    // height: 100%;
-    // overflow: hidden;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
     background-color: #f8f8f8;
   }
   html, body {
